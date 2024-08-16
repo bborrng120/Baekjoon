@@ -7,9 +7,9 @@ graph[0][0] = 2
 change = deque([])
 snake = deque([(0,0)])
 second = 0
-x, y, i = 0, 0, 1
-dx = [0, 0, -1, 1]
-dy = [-1 , 1, 0, 0]
+x, y, i = 0, 0, 0
+dx = [0, 1, 0, -1]
+dy = [1, 0, -1, 0]
 
 k = int(sys.stdin.readline())
 for _ in range(k):
@@ -37,35 +37,11 @@ while True:
     graph[nx][ny] = 2
     
     if change and change[0][0] == second:
-        if i==0:
-            if change[0][1]=='D':
-                i = 2
-            else:
-                i = 3
-        elif i==1:
-            if change[0][1]=='D':
-                i = 3
-            else:
-                i = 2
-        elif i==2:
-            if change[0][1]=='D':
-                i = 1
-            else:
-                i = 0
+        if change[0][1] == 'D':
+            i = (i + 1) % 4
         else:
-            if change[0][1]=='D':
-                i = 0
-            else:
-                i = 1
+            i = (i - 1) % 4
         change.popleft()
     x, y = nx, ny
         
 print(second)
-        
-                
-                
-                
-                
-                
-                
-                
